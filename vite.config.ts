@@ -9,9 +9,11 @@ export default defineConfig({
     port: 3000,
   },
   build: {
-    // target 指定瀏覽器版本
-    target: "chrome89",
+    target: "esnext", // 使用最新語法
+    minify: false, // 不壓縮
+    cssCodeSplit: true, // 拆分css
   },
+  base: "/",
   plugins: [
     react(),
 

@@ -70,14 +70,6 @@
         
     }
       const usedRemotes = [
-                {
-                  entryGlobalName: "remoteA",
-                  name: "remoteA",
-                  type: "module",
-                  entry: "https://vite-react-ts-remote-a.vercel.app/",
-                  shareScope: "default",
-                }
-          
       ]
       export {
         usedShared,

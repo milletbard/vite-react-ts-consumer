@@ -25,7 +25,10 @@ export default defineConfig({
           // name: 遠端應用程式名稱
           name: "remoteA",
           // entry:遠端應用程式入口
-          entry: "http://localhost:2000/remoteEntry.js",
+          entry:
+            process.env.NODE_ENV === "production"
+              ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
+              : "http://localhost:2000/remoteEntry.js",
         },
       },
       shared: ["react", "react-dom"],

@@ -24,10 +24,10 @@ export default defineConfig({
               : "http://localhost:2000/remoteEntry.js",
         },
       },
-      getPublicPath:
-        process.env.NODE_ENV === "production"
-          ? "https://vite-react-ts-remote-a.vercel.app/"
-          : "http://localhost:2000/",
+      // getPublicPath:
+      //   process.env.NODE_ENV === "production"
+      //     ? "https://vite-react-ts-remote-a.vercel.app/"
+      //     : "http://localhost:2000/",
       filename: "remoteEntry.js",
       shared: {
         react: {

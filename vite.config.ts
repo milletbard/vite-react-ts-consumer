@@ -13,7 +13,6 @@ export default defineConfig({
     minify: false, // 不壓縮
     cssCodeSplit: true, // 拆分css
   },
-  base: "/",
   plugins: [
     react(),
 

@@ -26,10 +26,17 @@ export default defineConfig({
           // name: 遠端應用程式名稱
           name: "remoteA",
           // entry:遠端應用程式入口
-          entry:
-            process.env.NODE_ENV === "production"
-              ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
-              : "http://localhost:2000/remoteEntry.js",
+          entry: "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js",
+
+          // entry:
+          //   process.env.NODE_ENV === "production"
+          //     ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
+          //     : "http://localhost:2000/remoteEntry.js",
+
+          // entryGlobalName 遠端應用程式入口的全局名稱
+          // entryGlobalName: "remoteA",
+          // shareScope 共享範圍
+          // shareScope: "default",
         },
       },
       shared: ["react", "react-dom"],

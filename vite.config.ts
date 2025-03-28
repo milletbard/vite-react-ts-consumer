@@ -12,33 +12,51 @@ export default defineConfig({
     target: "esnext", // 使用最新語法
     minify: false, // 不壓縮
     cssCodeSplit: true, // 拆分css
+    rollupOptions: {
+      output: {
+        format: "es", // ✅ 重點！使用原生 ESM module 格式
+        entryFileNames: "remoteEntry.js",
+        chunkFileNames: "assets/[name]-[hash].js",
+        assetFileNames: "assets/[name]-[hash].[ext]",
+      },
+    },
   },
   plugins: [
     react(),
-
     federation({
       name: "vite-react-ts-consumer-app",
       remotes: {
         // 遠端應用程式名稱
-        remoteA: {
-          // type: "module" 指定遠端應用程式使用 module 模式
-          type: "module",
-          // name: 遠端應用程式名稱
-          name: "remoteA",
-          // entry:遠端應用程式入口
-          entry:
-            process.env.NODE_ENV === "production"
-              ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
-              : "http://localhost:2000/remoteEntry.js",
+        remoteA:
+          process.env.NODE_ENV === "production"
+            ? "remoteA@https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
+            : "remoteA@http://localhost:2000/remoteEntry.js",
+        // remoteA: {
+        //   // type: "module" 指定遠端應用程式使用 module 模式
+        //   type: "module",
+        //   // name: 遠端應用程式名稱
+        //   name: "remoteA",
+        //   // entry:遠端應用程式入口
+        //   entry:
+        //     process.env.NODE_ENV === "production"
+        //       ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
+        //       : "http://localhost:2000/remoteEntry.js",
 
-          // entryGlobalName 遠端應用程式入口的全局名稱
-          entryGlobalName: "remoteA",
-          // shareScope 共享範圍
-          shareScope: "default",
-        },
+        //   // entryGlobalName 遠端應用程式入口的全局名稱
+        //   entryGlobalName: "remoteA",
+        //   // shareScope 共享範圍
+        //   shareScope: "default",
+        // },
       },
       filename: "remoteEntry.js",
-      shared: ["react", "react-dom"],
+      shared: {
+        react: {
+          singleton: true,
+        },
+        "react/": {
+          singleton: true,
+        },
+      },
     }),
   ],
 });

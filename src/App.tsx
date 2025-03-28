@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -10,7 +10,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<div>Home</div>} />
-          <Route path="/remoteA" element={<RemoteA />} />
+          <Route
+            path="/remoteA"
+            element={
+              <Suspense fallback={<p>Loading...</p>}>
+                <RemoteA />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const RemoteA = React.lazy(() => import("remoteA"));
+const RemoteA = React.lazy(async () => import("remoteA"));
 
 function App() {
   return (

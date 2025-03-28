@@ -1,8 +1,8 @@
-import React, { Suspense } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const RemoteA = React.lazy(async () => import("remoteA"));
+const RemoteA = React.lazy(() => import("remoteA/App"));
 
 function App() {
   return (
@@ -10,14 +10,15 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<div>Home</div>} />
-          <Route
+          <Route path="/remoteA" element={<RemoteA />} />
+          {/* <Route
             path="/remoteA"
             element={
               <Suspense fallback={<p>Loading Remote...</p>}>
                 <RemoteA />
               </Suspense>
             }
-          />
+          /> */}
         </Routes>
       </BrowserRouter>
     </>

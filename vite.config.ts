@@ -15,7 +15,6 @@ export default defineConfig({
     federation({
       name: "vite-react-ts-consumer-app",
       remotes: {
-        // 遠端應用程式名稱
         remoteA: {
           type: "module",
           name: "remoteA",
@@ -23,10 +22,12 @@ export default defineConfig({
             process.env.NODE_ENV === "production"
               ? "https://vite-react-ts-remote-a.vercel.app/remoteEntry.js"
               : "http://localhost:2000/remoteEntry.js",
-          entryGlobalName: "remoteA",
-          shareScope: "default",
         },
       },
+      getPublicPath:
+        process.env.NODE_ENV === "production"
+          ? "https://vite-react-ts-remote-a.vercel.app/"
+          : "http://localhost:2000/",
       filename: "remoteEntry.js",
       shared: {
         react: {

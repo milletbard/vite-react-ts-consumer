@@ -13,7 +13,7 @@ function App() {
           <Route
             path="/remoteA"
             element={
-              <Suspense fallback={<p>Loading...</p>}>
+              <Suspense fallback={<p>Loading Remote...</p>}>
                 <RemoteA />
               </Suspense>
             }
